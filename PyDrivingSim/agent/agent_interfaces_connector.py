@@ -5,9 +5,9 @@ from sys import platform
 import agent.interfaces_python_data_structs as interface
 
 if platform == "linux" or platform == "linux2":
-    pass
+    lib_file = "agent/libagent_lib.so"
 elif platform == "darwin":
-    lib_file = "agent/libagent.dylib"
+    lib_file = "agent/libagent.old.dylib"
 elif platform == "win32":
     lib_file = "agent/agent_lib.dll"
 
