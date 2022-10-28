@@ -13,17 +13,17 @@ sudo apt install clang++ <br>
 sudo apt install cmake <br>
 sudo apt install gdb <br>
 
-#### To run the visualizator on Windows10 using wsl:
+#### To run the visualizator on Windows 10 using WSL:
 
 - Install XLaunch and set "Disable access control", then save this configuration in %AppData%\Microsoft\Windows\Start Menu\Programs\Startup folder to avoid to open XLaunch each time
 
 - The next step is to set the DISPLAY environment variable on Linux to use the Windows host's IP address. In the terminal run: <br>
   export DISPLAY="`grep nameserver /etc/resolv.conf | sed 's/nameserver //'`:0" 
 
-- Running the following command, it is possible to see that the $DISPLAY environment variable now has the Windows Host’s IP set: <br>
+- It is possible to see that the $DISPLAY environment variable now has the Windows Host’s IP set running the following command: <br>
   echo $DISPLAY
 
-- To avoid having to run that command every time that WSL is launched, you can include the command at the end of the /etc/bash.bashrc file, running: <br>
+- To avoid having to run that command every time that WSL is launched, you can you can paste the command (export DISPLAY..) at the end of the /etc/bash.bashrc file, running: <br>
   nano ~/.bashrc or gedit ~/.bashrc
 
 - It is also necessary to create a .xsession file in the user's home directory: <br>
