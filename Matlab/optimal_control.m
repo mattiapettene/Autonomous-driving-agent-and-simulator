@@ -33,3 +33,25 @@ FCs = 's(T) = sf, v(T) = vf, a(T) = af';
 
 %% Convert symbolic objects to string for using 'dsolve'
 sol_opt = dsolve([ode1, ode2, ode3s, Dl1, Dl2, Dl3], ICs, FCs);
+
+
+disp('Optimal polynomial longitudinal position:');
+pretty(sol_opt.s)
+
+disp('Optimal polynomial velocity:');
+pretty(sol_opt.v)
+
+disp('Optimal polynomial acceleration:');
+pretty(sol_opt.a)
+
+%% Assign to function
+
+% Obtain optimal control
+sol_opt.j = subs(opt_u,l3(t), sol_opt.l3);
+
+syms t v0 a0 sf vf af T;
+s_opt_fun = matlabFunction(sol_opt.s, 'Vars', [t,v0,a0,sf,vf,af,T], 'File', 's_opt.m');
+v_opt_fun = matlabFunction(sol_opt.v, 'Vars', [t,v0,a0,sf,vf,af,T], 'File', 'v_opt.m');
+a_opt_fun = matlabFunction(sol_opt.a, 'Vars', [t,v0,a0,sf,vf,af,T], 'File', 'a_opt.m');
+j_opt_fun = matlabFunction(sol_opt.j, 'Vars', [t,v0,a0,sf,vf,af,T], 'File', 'j_opt.m');
+
